@@ -20,7 +20,7 @@ jobs:
       - name: Install dependencies
         run: |
           python3 --version
-          pytnon3.11 -m venv venv 
+          python3.11 -m venv venv 
           source venv/bin/activate
           pip3 install ansible molecule molecule[docker] docker
           ansible --version
