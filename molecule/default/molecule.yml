@@ -6,7 +6,7 @@ driver:
   name: docker
 platforms:
   - name: instance
-    image: ubi8:latest
+    image: ubi8/ubi-init
     pre_build_image: true
 provisioner:
   name: ansible
