@@ -25,4 +25,4 @@ jobs:
           molecule --version
       - name: Lint with molecule
         run: |
-          molecule lint
+          molecule --debug lint
