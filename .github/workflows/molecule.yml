@@ -23,6 +23,6 @@ jobs:
           python3 -m pip install ansible molecule molecule[podman] podman
           ansible --version
           molecule --version
-      - name: Test with molecule
+      - name: Lint with molecule
         run: |
-          molecule test
+          molecule lint
