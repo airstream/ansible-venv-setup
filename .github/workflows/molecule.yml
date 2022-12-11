@@ -20,7 +20,7 @@ jobs:
       - name: Install dependencies
         run: |
           python3 --version
-          python3 -m pip install ansible molecule molecule[podman]
+          python3 -m pip install ansible molecule molecule[podman] podman
           ansible --version
           molecule --version
       - name: Test with molecule
