@@ -25,14 +25,14 @@ jobs:
         with:
           python-version: ${{ matrix.python-version }}
 
-      - name: Install test dependencies.
+      - name: Install yamllint dependencies
         run: pip3 install yamllint
 
       - name: Check code syntax with yamllint
         run: |
           yamllint .
 
-      - name: Install dependencies
+      - name: Install other dependencies
         run: |
           python3 --version
           pip3 install ansible molecule molecule[podman] podman
@@ -44,3 +44,6 @@ jobs:
       - name: Check code syntax with yamllint
         run: |
           molecule test
+        env:
+          PY_COLORS: '1'
+          ANSIBLE_FORCE_COLOR: '1'
