@@ -7,6 +7,6 @@
       ansible.builtin.copy:
         src: /etc/hosts
         dest: /tmp/hosts-from-controller
-    - name: "Include test.myrole"
+    - name: "Include test.ansible-venv-setup"
       ansible.builtin.include_role:
-        name: "test.myrole"
+        name: "test.ansible-venv-setup"
