@@ -1,6 +1,11 @@
 ---
 name: Molecule Test
 on: [push, pull_request]
+
+defaults:
+  run:
+    working-directory: 'test.ansible-venv-setup'
+
 jobs:
   build:
     runs-on: ubuntu-latest
@@ -8,10 +13,6 @@ jobs:
       max-parallel: 4
       matrix:
         python-version: ["3.x"]
-
-defaults:
-  run:
-    working-directory: 'test.ansible-venv-setup'
 
     steps:
       - name: Check out the codebase.
