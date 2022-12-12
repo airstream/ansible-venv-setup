@@ -32,14 +32,9 @@ jobs:
         run: |
           yamllint .
 
-      - name: Install other dependencies
+      - name: Install molecule dependencies
         run: |
-          python3 --version
           pip3 install ansible molecule molecule[podman] podman
-          ansible --version
-          molecule --version
-          pwd
-          ls -la
 
       - name: Check code syntax with yamllint
         run: |
