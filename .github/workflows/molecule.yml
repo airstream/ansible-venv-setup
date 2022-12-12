@@ -9,7 +9,16 @@ jobs:
       matrix:
         python-version: ["3.x"]
 
+defaults:
+  run:
+    working-directory: 'test.ansible-venv-setup'
+
     steps:
+      - name: Check out the codebase.
+        uses: actions/checkout@v2
+        with:
+          path: 'test.ansible-venv-setup'
+
       - name: Set up Python ${{ matrix.python-version }}
         uses: actions/setup-python@v2
         with:
@@ -30,7 +39,7 @@ jobs:
           molecule --version
           pwd
           ls -la
-          
+
       - name: Check code syntax with yamllint
         run: |
           molecule lint .
