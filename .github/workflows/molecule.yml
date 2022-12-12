@@ -29,7 +29,8 @@ jobs:
           ansible --version
           molecule --version
           pwd
-
+          ls -la
+          
       - name: Check code syntax with yamllint
         run: |
           molecule lint .
