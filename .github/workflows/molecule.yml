@@ -15,7 +15,7 @@ jobs:
         python-version: ["3.x"]
 
     steps:
-      - name: Check out the codebase.
+      - name: Check out the codebase
         uses: actions/checkout@v2
         with:
           path: 'test.ansible-venv-setup'
@@ -36,7 +36,7 @@ jobs:
         run: |
           pip3 install ansible molecule molecule[podman] podman
 
-      - name: Check code syntax with yamllint
+      - name: Run molecule test
         run: |
           molecule test
         env:
