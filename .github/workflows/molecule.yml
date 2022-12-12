@@ -28,6 +28,7 @@ jobs:
           pip3 install ansible molecule molecule[podman] podman
           ansible --version
           molecule --version
+          pwd
 
       - name: Check code syntax with yamllint
         run: |
