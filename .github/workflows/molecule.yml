@@ -43,4 +43,4 @@ jobs:
 
       - name: Check code syntax with yamllint
         run: |
-          molecule lint
+          molecule test
