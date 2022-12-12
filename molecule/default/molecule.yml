@@ -3,10 +3,10 @@ role_name_check: 1
 dependency:
   name: galaxy
 driver:
-  name: docker
+  name: podman
 platforms:
   - name: instance
-    image: ubi8/ubi-init
+    image: quay.io/centos/centos:stream8
     pre_build_image: true
 provisioner:
   name: ansible
