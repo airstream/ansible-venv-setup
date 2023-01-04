@@ -8,3 +8,17 @@
   - name: Example assertion
     ansible.builtin.assert:
       that: true
+
+  - name: Gather the package facts
+    ansible.builtin.package_facts:
+      manager: auto
+
+  - name: Check whether a package called foobar is installed
+    ansible.builtin.debug:
+      msg: "{{ ansible_facts.packages['python39'] | length }} versions of foobar are installed!"
+    when: "'python39' in ansible_facts.packages"
+
+  - name: Check whether a package called foobar is installed
+    ansible.builtin.debug:
+      msg: "{{ ansible_facts.packages['git'] | length }} versions of foobar are installed!"
+    when: "'git' in ansible_facts.packages"

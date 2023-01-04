@@ -1,14 +1,7 @@
 ---
 - name: Converge
   hosts: all
-  become: true
-  become_method: sudo
   tasks:
-    # replace these tasks with whatever you find suitable to test
-    - name: Copy something to test use of synchronize module
-      ansible.builtin.copy:
-        src: /etc/hosts
-        dest: /tmp/hosts-from-controller
     - name: "Include test.ansible-venv-setup"
       ansible.builtin.include_role:
         name: "test.ansible-venv-setup"
