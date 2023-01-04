@@ -4,6 +4,9 @@
 - name: Verify
   hosts: all
   gather_facts: false
+  vars:
+    ansible_release_version: '6.5.0'
+
   tasks:
   - name: Example assertion
     ansible.builtin.assert:
