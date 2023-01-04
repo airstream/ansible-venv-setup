@@ -22,3 +22,15 @@
     ansible.builtin.debug:
       msg: "git version installed: {{ ansible_facts.packages['git'][0]['version'] }}"
     when: "'git' in ansible_facts.packages"
+
+  - name: Check venv dir
+    stat:
+      path: "/app/venv/venv_ansible_{{ ansible_release_version }}"
+    register: venv_dir
+
+  - name: Check if venv dir exists
+    assert:
+      that:
+        - venv_dir.stat.exists == True
+      success_msg: "/app/venv/venv_ansible_{{ ansible_release_version }} dir exists"
+      fail_msg: "/app/venv/venv_ansible_{{ ansible_release_version }} dir doesn't exist"
