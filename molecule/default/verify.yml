@@ -15,10 +15,10 @@
 
   - name: Check whether a package called foobar is installed
     ansible.builtin.debug:
-      msg: "{{ ansible_facts.packages['python39'] | length }} versions of foobar are installed!"
+      msg: "python version installed: {{ ansible_facts.packages['python39'][0]['version'] }}"
     when: "'python39' in ansible_facts.packages"
 
   - name: Check whether a package called foobar is installed
     ansible.builtin.debug:
-      msg: "{{ ansible_facts.packages['git'] | length }} versions of foobar are installed!"
+      msg: "git version installed: {{ ansible_facts.packages['git'][0]['version'] }}"
     when: "'git' in ansible_facts.packages"
