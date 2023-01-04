@@ -6,10 +6,12 @@
       - python39
       - git
     state: present
-  #become: true
+  become: true
+  become_method: sudo
 
 - name: Setup ansible pip env
-  #become: true
+  become: true
+  become_method: sudo
   block:
     - name: Install pip3.9 virtualenv
       ansible.builtin.pip:

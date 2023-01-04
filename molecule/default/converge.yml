@@ -1,7 +1,8 @@
 ---
 - name: Converge
   hosts: all
-  #become: true
+  become: true
+  become_method: sudo
   tasks:
     # replace these tasks with whatever you find suitable to test
     - name: Copy something to test use of synchronize module
