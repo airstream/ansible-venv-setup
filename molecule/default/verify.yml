@@ -16,23 +16,23 @@
     ansible.builtin.package_facts:
       manager: auto
 
-  - name: Check whether a package called foobar is installed
+  - name: Check whether a package called python is installed
     ansible.builtin.debug:
       msg: "python version installed: {{ ansible_facts.packages['python39'][0]['version'] }}"
     when: "'python39' in ansible_facts.packages"
 
-  - name: Check whether a package called foobar is installed
+  - name: Check whether a package called git is installed
     ansible.builtin.debug:
       msg: "git version installed: {{ ansible_facts.packages['git'][0]['version'] }}"
     when: "'git' in ansible_facts.packages"
 
   - name: Check venv dir
-    stat:
+    ansible.builtin.stat:
       path: "/app/venv/venv_ansible_{{ ansible_release_version }}"
     register: venv_dir
 
   - name: Check if venv dir exists
-    assert:
+    ansible.builtin.assert:
       that:
         - venv_dir.stat.exists == True
       success_msg: "/app/venv/venv_ansible_{{ ansible_release_version }} dir exists"
