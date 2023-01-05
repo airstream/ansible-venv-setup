@@ -34,7 +34,7 @@ jobs:
 
       - name: Install molecule dependencies
         run: |
-          pip3 install ansible molecule molecule[podman] podman
+          pip3 install ansible molecule[podman] podman
 
       - name: Run molecule test
         run: |
