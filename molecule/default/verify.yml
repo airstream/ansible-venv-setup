@@ -4,10 +4,12 @@
 - name: Verify
   hosts: all
   gather_facts: false
-  vars:
-    ansible_release_version: '6.5.0'
+  #vars:
+    #ansible_release_version: '6.5.0'
 
   tasks:
+  - include_vars: defaults/main.yml
+
   - name: Example assertion
     ansible.builtin.assert:
       that: true
