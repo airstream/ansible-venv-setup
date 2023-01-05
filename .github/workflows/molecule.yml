@@ -4,7 +4,7 @@ on: [push, pull_request]
 
 defaults:
   run:
-    working-directory: 'test.ansible-venv-setup'
+    working-directory: 'ansible-venv-setup'
 
 jobs:
   build:
@@ -18,7 +18,7 @@ jobs:
       - name: Check out the codebase
         uses: actions/checkout@v2
         with:
-          path: 'test.ansible-venv-setup'
+          path: 'ansible-venv-setup'
 
       - name: Set up Python ${{ matrix.python-version }}
         uses: actions/setup-python@v2
