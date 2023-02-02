@@ -22,6 +22,30 @@
         msg: "git version installed: {{ ansible_facts.packages['git'][0]['version'] }}"
       when: "'git' in ansible_facts.packages"
 
+    - name: Check /etc/pip.conf
+      ansible.builtin.stat:
+        path: "/etc/pip.conf"
+      register: pip_file
+
+    - name: Check if /etc/pip.conf file exists
+      ansible.builtin.assert:
+        that:
+          - pip_file.stat.exists == True
+        success_msg: "/etc/pip.conf file exists"
+        fail_msg: "/etc/pip.conf file doesn't exist"
+
+    - name: Check /etc/ansible/ansible.cfg
+      ansible.builtin.stat:
+        path: "/etc/ansible/ansible.cfg"
+      register: ansible_cfg_file
+
+    - name: Check if /etc/ansible/ansible.cfg file exists
+      ansible.builtin.assert:
+        that:
+          - ansible_cfg_file.stat.exists == True
+        success_msg: "/etc/ansible/ansible.cfg file exists"
+        fail_msg: "/etc/ansible/ansible.cfg file doesn't exist"
+
     - name: Check venv dir
       ansible.builtin.stat:
         path: "/app/venv/venv_ansible_{{ ansible_release_version }}"
