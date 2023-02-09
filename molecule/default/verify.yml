@@ -12,24 +12,30 @@
       ansible.builtin.package_facts:
         manager: auto
 
-    - name: Check whether a package called python is installed
-      ansible.builtin.debug:
-        msg: "python version installed: {{ ansible_facts.packages['python39'][0]['version'] }}"
-      when: "'python39' in ansible_facts.packages"
-
-    - name: Check whether a package called git is installed
-      ansible.builtin.debug:
-        msg: "git version installed: {{ ansible_facts.packages['git'][0]['version'] }}"
-      when: "'git' in ansible_facts.packages"
-
-    - name: Check venv dir
-      ansible.builtin.stat:
-        path: "/app/venv/venv_ansible_{{ ansible_release_version }}"
-      register: venv_dir
-
-    - name: Check if venv dir exists
+    - name: Check packages installed
       ansible.builtin.assert:
         that:
-          - venv_dir.stat.exists == True
-        success_msg: "/app/venv/venv_ansible_{{ ansible_release_version }} dir exists"
-        fail_msg: "/app/venv/venv_ansible_{{ ansible_release_version }} dir doesn't exist"
+          - "item in ansible_facts.packages"
+        success_msg: "{{ item }} version installed: {{ ansible_facts.packages[item][0]['version'] }}"
+        fail_msg: "{{ item }} is not installed"
+      loop:
+        - git
+        - python39
+
+    - name: Check if files exist
+      ansible.builtin.stat:
+        path: "{{ item }}"
+      loop:
+        - /etc/pip.conf
+        - /etc/ansible/ansible.cfg
+        - "/app/venv/venv_ansible_{{ ansible_release_version }}"
+      register: check_files
+
+    - name: Assert file existence
+      ansible.builtin.assert:
+        that:
+          - "item.stat.exists | bool"
+        success_msg: "{{ item.item }} exists"
+        fail_msg: "{{ item.item }} does not exist"
+        quiet: true
+      loop: "{{ check_files.results }}"
