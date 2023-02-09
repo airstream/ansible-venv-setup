@@ -1,0 +1,39 @@
+---
+# This is an example playbook to execute Ansible tests.
+
+- name: Verify
+  hosts: all
+  gather_facts: false
+
+  tasks:
+    - include_vars: main.yml
+
+    - name: Gather the package facts
+      ansible.builtin.package_facts:
+        manager: auto
+
+    - name: Check packages installed
+      ansible.builtin.assert:
+        that:
+          - "item in ansible_facts.packages"
+        success_msg: "{{ item }} version installed: {{ ansible_facts.packages[item][0]['version'] }}"
+        fail_msg: "{{ item }} is not installed"
+      loop:
+        - git
+        - python39
+
+    - name: Check if files exist
+      ansible.builtin.stat:
+        path: "{{ item }}"
+      loop:
+        - "/app/venv/venv_ansible_{{ ansible_release_version }}"
+      register: check_files
+
+    - name: Assert file existence
+      ansible.builtin.assert:
+        that:
+          - "item.stat.exists | bool"
+        success_msg: "{{ item.item }} exists"
+        fail_msg: "{{ item.item }} does not exist"
+        quiet: true
+      loop: "{{ check_files.results }}"

@@ -1,0 +1,14 @@
+---
+role_name_check: 1
+dependency:
+  name: galaxy
+driver:
+  name: podman
+platforms:
+  - name: instance
+    image: quay.io/rockylinux/rockylinux:8.7.20221112
+    pre_build_image: true
+provisioner:
+  name: ansible
+verifier:
+  name: ansible
