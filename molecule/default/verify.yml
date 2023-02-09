@@ -26,8 +26,6 @@
       ansible.builtin.stat:
         path: "{{ item }}"
       loop:
-        - /etc/pip.conf
-        - /etc/ansible/ansible.cfg
         - "/app/venv/venv_ansible_{{ ansible_release_version }}"
       register: check_files
 
