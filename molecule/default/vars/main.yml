@@ -1,4 +1,0 @@
----
-# molecule defaults file for ansible-venv-setup
-ansible_release_version: '6.5.0'
-group: "root"
