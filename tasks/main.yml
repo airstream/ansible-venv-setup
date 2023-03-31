@@ -9,11 +9,11 @@
 
 - name: Setup ansible pip env
   block:
-    - name: Install pip3.9 virtualenv
-      ansible.builtin.pip:
-        name: virtualenv
-        state: present
-        executable: pip
+    # - name: Install pip3.9 virtualenv
+    #   ansible.builtin.pip:
+    #     name: virtualenv
+    #     state: present
+    #     executable: pip3.9
 
     - name: Create directory /app/venv
       ansible.builtin.file:
