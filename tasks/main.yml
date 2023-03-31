@@ -13,7 +13,7 @@
       ansible.builtin.pip:
         name: virtualenv
         state: present
-        executable: pip3
+        executable: pip
 
     - name: Create directory /app/venv
       ansible.builtin.file:
