@@ -7,26 +7,19 @@ defaults:
     working-directory: 'ansible-venv-setup'
 
 jobs:
-  build:
+  lint:
+    name: Lint
     runs-on: ubuntu-latest
-    strategy:
-      max-parallel: 4
-      matrix:
-        python-version: ["3.x"]
-        distro:
-          - "8.7.20230215"
-          - "9.1.20230215"
-
     steps:
       - name: Check out the codebase
-        uses: actions/checkout@v2
+        uses: actions/checkout@v3
         with:
           path: 'ansible-venv-setup'
 
-      - name: Set up Python ${{ matrix.python-version }}
-        uses: actions/setup-python@v2
+      - name: Set up Python 3
+        uses: actions/setup-python@v3
         with:
-          python-version: ${{ matrix.python-version }}
+          python-version: "3.x"
 
       - name: Install yamllint dependencies
         run: pip3 install yamllint
@@ -34,6 +27,27 @@ jobs:
       - name: Check code syntax with yamllint
         run: |
           yamllint .
+
+  molecule:
+    name: Molecule
+    runs-on: ubuntu-latest
+    strategy:
+      max-parallel: 4
+      matrix:
+        distro:
+          - "8.7.20230215"
+          - "9.1.20230215"
+
+    steps:
+      - name: Check out the codebase
+        uses: actions/checkout@v3
+        with:
+          path: 'ansible-venv-setup'
+
+      - name: Set up Python 3
+        uses: actions/setup-python@v3
+        with:
+          python-version: "3.x"
 
       - name: Install molecule dependencies
         run: |
