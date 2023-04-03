@@ -7,13 +7,13 @@
       - git
     state: present
 
-- name: Setup ansible pip env
-  block:
-    - name: Install pip3.9 virtualenv
-      ansible.builtin.pip:
-        name: virtualenv
-        state: present
-        # executable: pip3.9
+# - name: Setup ansible pip env
+#   block:
+#     - name: Install pip3.9 virtualenv
+#       ansible.builtin.pip:
+#         name: virtualenv
+#         state: present
+#         # executable: pip3.9
 
     - name: Create directory /app/venv
       ansible.builtin.file:
@@ -23,18 +23,18 @@
         group: "{{ group }}"
         mode: '2770'
 
-    - name: Copy requirements file to /app/venv
-      ansible.builtin.template:
-        src: "app/venv/requirements_{{ ansible_release_version }}.txt.j2"
-        dest: "/app/venv/requirements_{{ ansible_release_version }}.txt"
-        owner: root
-        group: "{{ group }}"
-        mode: '0644'
-        backup: false
+    # - name: Copy requirements file to /app/venv
+    #   ansible.builtin.template:
+    #     src: "app/venv/requirements_{{ ansible_release_version }}.txt.j2"
+    #     dest: "/app/venv/requirements_{{ ansible_release_version }}.txt"
+    #     owner: root
+    #     group: "{{ group }}"
+    #     mode: '0644'
+    #     backup: false
 
-    - name: Create venv
-      ansible.builtin.pip:
-        requirements: "/app/venv/requirements_{{ ansible_release_version }}.txt"
-        virtualenv: "/app/venv/venv_ansible_{{ ansible_release_version }}"
-        virtualenv_command: /usr/local/bin/virtualenv
-        virtualenv_python: python3.9
+    # - name: Create venv
+    #   ansible.builtin.pip:
+    #     requirements: "/app/venv/requirements_{{ ansible_release_version }}.txt"
+    #     virtualenv: "/app/venv/venv_ansible_{{ ansible_release_version }}"
+    #     virtualenv_command: /usr/local/bin/virtualenv
+    #     virtualenv_python: python3.9
