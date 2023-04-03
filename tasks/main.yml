@@ -15,13 +15,13 @@
 #         state: present
 #         # executable: pip3.9
 
-    - name: Create directory /app/venv
-      ansible.builtin.file:
-        path: /app/venv
-        state: directory
-        owner: root
-        group: "{{ group }}"
-        mode: '2770'
+- name: Create directory /app/venv
+  ansible.builtin.file:
+    path: /app/venv
+    state: directory
+    owner: root
+    group: "{{ group }}"
+    mode: '2770'
 
     # - name: Copy requirements file to /app/venv
     #   ansible.builtin.template:
