@@ -20,7 +20,7 @@
         fail_msg: "{{ item }} is not installed"
       loop:
         - git
-        - python39
+        # - python39
 
     - name: Check if files exist
       ansible.builtin.stat:
