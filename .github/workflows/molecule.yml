@@ -35,8 +35,8 @@ jobs:
       max-parallel: 4
       matrix:
         distro:
-          - "8.7.20230215"
-          - "9.1.20230215"
+          - "rockylinux:8.7.20230215"
+          - "rockylinux:9.1.20230215"
 
     steps:
       - name: Check out the codebase

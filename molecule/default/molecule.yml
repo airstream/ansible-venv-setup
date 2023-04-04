@@ -6,7 +6,7 @@ driver:
   name: podman
 platforms:
   - name: instance
-    image: "quay.io/rockylinux/rockylinux:${MOLECULE_DISTRO}"
+    image: "quay.io/rockylinux/${MOLECULE_DISTRO}"
     pre_build_image: true
 provisioner:
   name: ansible
